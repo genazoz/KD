@@ -1,0 +1,496 @@
+/*------------------------------------------------------------------
+Project:	KrupnoeDelo
+Version:	1.0
+Last change:	06/11/2020
+Assigned to:	genazoz.com
+-------------------------------------------------------------------*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap");
+
+@import "vars.scss";
+
+@import "response.scss";
+
+@import "mixins.scss";
+
+/*--------------------------------------------------
+	01. General Settings
+---------------------------------------------------*/
+
+html,
+body {
+  /* Блочная модель */
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+
+  /* Оформление */
+  background: $gray6;
+
+  /* Типографика */
+  font-family: $font-family;
+  font-weight: 300;
+  font-size: $font-size;
+
+  /* Адаптация */
+  @include for-size(phone-only) {
+    font-size: 12px;
+  }
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+* {
+  &::-webkit-scrollbar {
+    //   display: none;
+  }
+}
+
+ins {
+  text-decoration: unset;
+}
+
+li {
+  list-style-type: none;
+}
+
+input,
+button {
+  outline: none;
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+caption,
+tbody,
+tfoot,
+thead {
+  border: 0;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+pre {
+}
+
+address {
+}
+
+b,
+strong {
+}
+
+blockquote,
+q {
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+}
+
+blockquote {
+}
+
+blockquote span {
+}
+
+blockquote cite,
+blockquote small {
+}
+
+blockquote em,
+blockquote i,
+blockquote cite {
+}
+
+blockquote strong,
+blockquote b {
+}
+
+small {
+}
+
+big {
+}
+
+sup,
+sub {
+}
+
+sup {
+}
+
+sub {
+}
+
+dl {
+}
+
+dt {
+}
+
+dd {
+}
+
+ul,
+ol {
+}
+
+ul {
+}
+
+ol {
+}
+
+li > ul,
+li > ol {
+}
+
+li {
+}
+
+figure {
+}
+
+figure img {
+}
+
+.full img {
+}
+
+figcaption {
+}
+
+fieldset {
+}
+
+legend {
+}
+
+button,
+input {
+}
+
+input,
+textarea {
+  /* Оформление */
+  color: $gray1;
+  outline: none;
+
+  /* Типографика */
+  font-size: $font-size;
+  font-family: $font-family;
+  font-weight: normal;
+  line-height: 21px;
+
+  @include for-size(phone-only) {
+    font-size: 12px;
+  }
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+}
+
+button[disabled],
+input[disabled] {
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  --active: $gray2;
+  --input-border: $gray2;
+  --input-border-hover: $gray2;
+  --disabled: #f5f9ff;
+  --disabled-inner: #e4ecfa;
+  outline: none;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  box-shadow: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: max-content;
+  border: 2px solid $gray2;
+  background: var(--background);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  @include flexCenter;
+  width: 24px;
+  height: 24px;
+  @include for-size(phone-only) {
+    width: 19px;
+    height: 19px;
+  }
+  &:after {
+    content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' fill='hsl(0, 0%, 20%)'><path d='M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM18.0755 9.61647L10.2279 17.7187L5.87037 13.22C5.81508 13.1643 5.65915 13.0042 5.56323 12.7252C5.50806 12.5648 5.47634 12.3625 5.52154 12.1377C5.56719 11.9107 5.68426 11.6959 5.87152 11.5025C6.05842 11.3096 6.27018 11.1846 6.4996 11.1355C6.72737 11.0866 6.93203 11.1212 7.0926 11.18C7.27754 11.2478 7.4502 11.3621 7.58439 11.5067L10.2279 14.236L16.3866 7.87756C16.5379 7.73658 16.7158 7.62755 16.9124 7.56221C17.0736 7.50866 17.2791 7.47591 17.5063 7.52186C17.7381 7.56871 17.9557 7.6901 18.1464 7.88692C18.3368 8.08351 18.452 8.30578 18.488 8.54222C18.5233 8.77423 18.4761 8.97907 18.4106 9.13641C18.2979 9.40698 18.1345 9.5615 18.0755 9.61647Z' /></svg>");
+    transition: transform 0.3s ease, opacity 0.2s ease;
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    @include for-size(phone-only) {
+      transform: scale(0.8);
+    }
+  }
+  &:checked {
+    //  background: var(--active);
+    border-color: var(--active);
+    &:after {
+      transition: opacity 0.3s ease,
+        transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+    }
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    background: var(--disabled);
+    &:checked {
+      background: var(--disabled-inner);
+      border-color: $gray2;
+    }
+  }
+  &:hover {
+    &:not(:checked) {
+      &:not(:disabled) {
+        border-color: var(--input-border-hover);
+      }
+    }
+  }
+  &:not(.switch) {
+    &:after {
+      opacity: 0;
+    }
+    &:checked {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+input[type="search"] {
+  //-webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  //-webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+}
+
+textarea {
+  resize: none;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 4px;
+    background: #e0e0e0;
+    border-radius: 5px;
+  }
+}
+
+table,
+th,
+td {
+}
+
+table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+caption,
+th,
+td {
+}
+
+th {
+}
+
+td {
+}
+
+del {
+}
+
+hr {
+}
+
+.mark {
+  @include flexCenter;
+  width: 42px;
+  height: 21px;
+  overflow: hidden;
+
+  background: $yellow;
+  border-radius: 5px;
+
+  &_circle.mark {
+    width: 20px;
+    height: 20px;
+    position: relative;
+
+    border-radius: 50%;
+
+    input[type="color"] {
+      position: absolute;
+
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      margin: 0;
+
+      background: transparent;
+      cursor: pointer;
+    }
+  }
+
+  &.yellow {
+    background: $yellow;
+  }
+
+  @include for-size(phone-only) {
+    width: 30px;
+    height: 10px;
+  }
+}
+
+img {
+  border: 0 none;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+p {
+  font-size: 14px;
+  line-height: 16px;
+  color: $gray3;
+  font-weight: 400;
+  @include for-size(phone-only) {
+    display: flex;
+    align-items: center;
+
+    font-size: 10px;
+    line-height: 12px;
+    color: $gray3;
+  }
+}
+
+h1,
+.h1 {
+}
+
+h2 {
+}
+
+h3 {
+}
+
+h4 {
+}
+
+h5 {
+}
+
+h6,
+.h6 {
+}
+
+button {
+  @include button;
+}
+
+.flexRow {
+  @include flexRow;
+}
+
+.flexCol {
+  @include flexCol;
+}
